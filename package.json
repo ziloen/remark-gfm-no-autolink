@@ -1,11 +1,31 @@
 {
   "name": "remark-gfm-no-autolink",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.2",
+  "description": "remark plugin to support GFM but without autolink literals",
+  "author": "ziloen",
+  "license": "MIT",
+  "keywords": [
+    "unified",
+    "remark",
+    "remark-plugin",
+    "plugin",
+    "mdast",
+    "markdown",
+    "table",
+    "strikethrough",
+    "tasklist",
+    "footnote",
+    "github",
+    "gfm"
+  ],
+  "sideEffects": false,
+  "type": "module",
   "main": "index.js",
   "types": "index.d.ts",
-  "author": "",
-  "license": "ISC",
+  "files": [
+    "index.d.ts",
+    "index.js"
+  ],
   "dependencies": {
     "mdast-util-gfm-footnote": "^1.0.2",
     "mdast-util-gfm-strikethrough": "^1.0.3",
