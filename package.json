@@ -27,10 +27,10 @@
     "index.js"
   ],
   "dependencies": {
-    "mdast-util-gfm-footnote": "^1.0.2",
-    "mdast-util-gfm-strikethrough": "^1.0.3",
-    "mdast-util-gfm-table": "^1.0.7",
-    "mdast-util-gfm-task-list-item": "^1.0.2",
+    "mdast-util-gfm-footnote": "^2.0.0",
+    "mdast-util-gfm-strikethrough": "^2.0.0",
+    "mdast-util-gfm-table": "^2.0.0",
+    "mdast-util-gfm-task-list-item": "^2.0.0",
     "micromark-extension-gfm-footnote": "^2.0.0",
     "micromark-extension-gfm-strikethrough": "^2.0.0",
     "micromark-extension-gfm-table": "^2.0.0",
@@ -38,7 +38,7 @@
     "micromark-util-combine-extensions": "^2.0.0"
   },
   "devDependencies": {
-    "@types/mdast": "^3.0.11",
+    "@types/mdast": "^4.0.0",
     "unified": "^10.1.2"
   }
 }

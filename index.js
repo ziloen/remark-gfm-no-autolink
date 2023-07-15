@@ -36,17 +36,17 @@ function gfm(options) {
   return combineExtensions([
     gfmFootnote(),
     gfmStrikethrough(options),
-    gfmTable,
-    gfmTaskListItem
+    gfmTable(),
+    gfmTaskListItem()
   ])
 }
 
 function gfmFromMarkdown() {
   return [
     gfmFootnoteFromMarkdown(),
-    gfmStrikethroughFromMarkdown,
-    gfmTableFromMarkdown,
-    gfmTaskListItemFromMarkdown
+    gfmStrikethroughFromMarkdown(),
+    gfmTableFromMarkdown(),
+    gfmTaskListItemFromMarkdown()
   ]
 }
 
@@ -58,9 +58,9 @@ function gfmToMarkdown(options) {
   return {
     extensions: [
       gfmFootnoteToMarkdown(),
-      gfmStrikethroughToMarkdown,
+      gfmStrikethroughToMarkdown(),
       gfmTableToMarkdown(options),
-      gfmTaskListItemToMarkdown
+      gfmTaskListItemToMarkdown()
     ]
   }
 }
