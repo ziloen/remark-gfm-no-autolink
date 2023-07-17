@@ -27,7 +27,11 @@ import { combineExtensions } from 'micromark-util-combine-extensions'
  * @typedef {import("mdast-util-gfm-table").Options} GfmTableOptions
  * @typedef {GfmStrikethroughOptions & GfmTableOptions} Options
  * @typedef {import('mdast').Root} Root
+ * @typedef {import('mdast-util-from-markdown').Extension} FromMarkdownExtension
+ * @typedef {import('mdast-util-to-markdown').Options} ToMarkdownExtension
  */
+
+
 
 /**
  * @param {GfmStrikethroughOptions} options 
@@ -41,18 +45,25 @@ function gfm(options) {
   ])
 }
 
+
+
+/**
+ * @returns {FromMarkdownExtension[]}
+ */
 function gfmFromMarkdown() {
   return [
     gfmFootnoteFromMarkdown(),
     gfmStrikethroughFromMarkdown(),
-    gfmTableFromMarkdown(),
+    gfmTableFromMarkdown,
     gfmTaskListItemFromMarkdown()
   ]
 }
 
+
+
 /**
- * 
- * @param {GfmTableOptions} options 
+ * @param {GfmTableOptions | null | undefined} [options] 
+ * @returns {ToMarkdownExtension}
  */
 function gfmToMarkdown(options) {
   return {
@@ -66,11 +77,12 @@ function gfmToMarkdown(options) {
 }
 
 
+
 /**
  * 
  * @this {import('unified').Processor}
  * @param {Options} options 
- * @type {import('unified').Plugin<[Options?]|void[], Root>}
+ * @type {import('unified').Plugin<[Options?] | void[], Root>}
  */
 export default function remarkGfmNoAutolink(options = {}) {
   const data = this.data()
@@ -80,12 +92,7 @@ export default function remarkGfmNoAutolink(options = {}) {
    * @param {unknown} value
    */
   function add(field, value) {
-    const list = /** @type {unknown[]} */ (
-      // Other extensions
-      /* c8 ignore next 2 */
-      data[field] ? data[field] : (data[field] = [])
-    )
-
+    const list = /** @type {unknown[]} */ (data[field] ||= [])
     list.push(value)
   }
 
