@@ -20,8 +20,7 @@
   ],
   "sideEffects": false,
   "type": "module",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "exports": "./index.js",
   "files": [
     "index.d.ts",
     "index.js"
@@ -29,7 +28,7 @@
   "dependencies": {
     "mdast-util-gfm-footnote": "^2.0.0",
     "mdast-util-gfm-strikethrough": "^2.0.0",
-    "mdast-util-gfm-table": "^1.0.7",
+    "mdast-util-gfm-table": "^2.0.0",
     "mdast-util-gfm-task-list-item": "^2.0.0",
     "micromark-extension-gfm-footnote": "^2.0.0",
     "micromark-extension-gfm-strikethrough": "^2.0.0",
@@ -38,9 +37,10 @@
     "micromark-util-combine-extensions": "^2.0.0"
   },
   "devDependencies": {
-    "@types/mdast": "^4.0.0",
+    "@types/mdast": "^4.0.1",
     "mdast-util-from-markdown": "^2.0.0",
     "mdast-util-to-markdown": "^2.1.0",
-    "unified": "^10.1.2"
+    "micromark-util-types": "^2.0.0",
+    "unified": "^11.0.3"
   }
 }

@@ -34,7 +34,15 @@ import { combineExtensions } from 'micromark-util-combine-extensions'
 
 
 /**
- * @param {GfmStrikethroughOptions} options 
+ * Create an extension for `micromark` to enable GFM syntax.
+ *
+ * @param {GfmStrikethroughOptions | null | undefined} [options]
+ *   Configuration (optional).
+ *
+ *   Passed to `micromark-extens-gfm-strikethrough`.
+ * @returns {import('micromark-util-types').Extension}
+ *   Extension for `micromark` that can be passed in `extensions` to enable GFM
+ *   syntax.
  */
 function gfm(options) {
   return combineExtensions([
@@ -46,15 +54,19 @@ function gfm(options) {
 }
 
 
-
 /**
- * @returns {FromMarkdownExtension[]}
+ * Create an extension for `mdast-util-from-markdown` to enable GFM (autolink
+ * literals, footnotes, strikethrough, tables, tasklists).
+ *
+ * @returns {Array<FromMarkdownExtension>}
+ *   Extension for `mdast-util-from-markdown` to enable GFM (autolink literals,
+ *   footnotes, strikethrough, tables, tasklists).
  */
-function gfmFromMarkdown() {
+export function gfmFromMarkdown() {
   return [
     gfmFootnoteFromMarkdown(),
     gfmStrikethroughFromMarkdown(),
-    gfmTableFromMarkdown,
+    gfmTableFromMarkdown(),
     gfmTaskListItemFromMarkdown()
   ]
 }
@@ -65,7 +77,17 @@ function gfmFromMarkdown() {
  * @param {GfmTableOptions | null | undefined} [options] 
  * @returns {ToMarkdownExtension}
  */
-function gfmToMarkdown(options) {
+/**
+ * Create an extension for `mdast-util-to-markdown` to enable GFM (autolink
+ * literals, footnotes, strikethrough, tables, tasklists).
+ *
+ * @param {import('mdast-util-gfm-table').Options | null | undefined} [options]
+ *   Configuration.
+ * @returns {ToMarkdownExtension}
+ *   Extension for `mdast-util-to-markdown` to enable GFM (autolink literals,
+ *   footnotes, strikethrough, tables, tasklists).
+ */
+export function gfmToMarkdown(options) {
   return {
     extensions: [
       gfmFootnoteToMarkdown(),
@@ -76,27 +98,32 @@ function gfmToMarkdown(options) {
   }
 }
 
-
+/** @type {Options} */
+const emptyOptions = {}
 
 /**
- * 
- * @this {import('unified').Processor}
- * @param {Options} options 
- * @type {import('unified').Plugin<[Options?] | void[], Root>}
+ * Add support GFM (footnotes, strikethrough, tables, tasklists).
+ *
+ * @param {Options | null | undefined} [options]
+ *   Configuration (optional).
+ * @returns {undefined}
+ *   Nothing.
  */
-export default function remarkGfmNoAutolink(options = {}) {
-  const data = this.data()
+export default function remarkGfmNoAutoLink(options) {
+  // @ts-expect-error: TS is wrong about `this`.
+  // eslint-disable-next-line unicorn/no-this-assignment
+  const self = /** @type {Processor} */ (this)
+  const settings = options || emptyOptions
+  const data = self.data()
 
-  /**
-   * @param {string} field
-   * @param {unknown} value
-   */
-  function add(field, value) {
-    const list = /** @type {unknown[]} */ (data[field] ||= [])
-    list.push(value)
-  }
+  const micromarkExtensions =
+    data.micromarkExtensions || (data.micromarkExtensions = [])
+  const fromMarkdownExtensions =
+    data.fromMarkdownExtensions || (data.fromMarkdownExtensions = [])
+  const toMarkdownExtensions =
+    data.toMarkdownExtensions || (data.toMarkdownExtensions = [])
 
-  add('micromarkExtensions', gfm(options))
-  add('fromMarkdownExtensions', gfmFromMarkdown())
-  add('toMarkdownExtensions', gfmToMarkdown(options))
+  micromarkExtensions.push(gfm(settings))
+  fromMarkdownExtensions.push(gfmFromMarkdown())
+  toMarkdownExtensions.push(gfmToMarkdown(settings))
 }
