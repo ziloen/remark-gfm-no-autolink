@@ -1,6 +1,6 @@
 {
   "name": "remark-gfm-no-autolink",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "remark plugin to support GFM but without autolink literals",
   "author": "ziloen",
   "license": "MIT",
@@ -25,7 +25,9 @@
     "index.d.ts",
     "index.js",
     "mdast-util-gfm.js",
-    "micromark-extension-gfm.js"
+    "mdast-util-gfm.d.ts",
+    "micromark-extension-gfm.js",
+    "micromark-extension-gfm.d.ts"
   ],
   "dependencies": {
     "mdast-util-gfm-footnote": "^2.1.0",
