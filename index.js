@@ -1,5 +1,5 @@
-import { gfm } from './micromark-extension-gfm'
-import { gfmFromMarkdown, gfmToMarkdown } from './mdast-util-gfm'
+import { gfm } from './micromark-extension-gfm.js'
+import { gfmFromMarkdown, gfmToMarkdown } from './mdast-util-gfm.js'
 
 /**
  * @import { Root } from "mdast"
