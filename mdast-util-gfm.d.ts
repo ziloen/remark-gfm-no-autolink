@@ -1,0 +1,1 @@
+export type Options = import("mdast-util-gfm-footnote").ToMarkdownOptions & import("mdast-util-gfm-table").Options
