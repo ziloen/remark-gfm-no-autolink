@@ -1,6 +1,6 @@
 {
   "name": "remark-gfm-no-autolink",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "remark plugin to support GFM but without autolink literals",
   "author": "ziloen",
   "license": "MIT",
@@ -42,10 +42,10 @@
     "micromark-util-combine-extensions": "^2.0.1"
   },
   "devDependencies": {
-    "@types/mdast": "^4.0.1",
-    "mdast-util-from-markdown": "^2.0.0",
-    "mdast-util-to-markdown": "^2.1.0",
-    "micromark-util-types": "^2.0.0",
-    "unified": "^11.0.3"
+    "@types/mdast": "^4.0.4",
+    "mdast-util-from-markdown": "^2.0.2",
+    "mdast-util-to-markdown": "^2.1.2",
+    "micromark-util-types": "^2.0.2",
+    "unified": "^11.0.5"
   }
 }
